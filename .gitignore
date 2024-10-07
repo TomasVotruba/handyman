@@ -1,0 +1,5 @@
+/vendor
+composer.lock
+
+# phpunit test results
+.phpunit.result.cache

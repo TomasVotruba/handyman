@@ -1,0 +1,25 @@
+{
+    "name": "tomasvotruba/handyman",
+    "require": {
+        "php": "^8.2",
+        "illuminate/container": "^11.26",
+        "symfony/console": "^7.1",
+        "symfony/process": "^7.1"
+    },
+    "require-dev": {
+        "tracy/tracy": "^2.10",
+        "symplify/easy-coding-standard": "^12.3",
+        "phpstan/phpstan": "^1.12",
+        "tomasvotruba/type-coverage": "^1.0",
+        "tomasvotruba/class-leak": "^1.0",
+        "shipmonk/composer-dependency-analyser": "^1.7",
+        "rector/swiss-knife": "^1.0",
+        "tomasvotruba/unused-public": "^1.0",
+        "rector/type-perfect": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TomasVotruba\\Handyman\\": "src"
+        }
+    }
+}
