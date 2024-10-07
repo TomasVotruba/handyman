@@ -9,6 +9,7 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use TomasVotruba\Handyman\Command\AddDevPackagesCommand;
 use TomasVotruba\Handyman\Command\GitignoreCommand;
+use TomasVotruba\Handyman\Command\SetupPHPStanCommand;
 
 final class ContainerFactory
 {
@@ -17,12 +18,15 @@ final class ContainerFactory
         $container = new Container();
 
         $container->singleton(Application::class, function (Container $container): Application {
+            // load all phpstan commands
             $addDevPackagesCommand = $container->make(AddDevPackagesCommand::class);
             $gitignoreCommand = $container->make(GitignoreCommand::class);
+            $setupPHPStanCommand = $container->make(SetupPHPStanCommand::class);
 
             $application = new Application('Handyman');
             $application->add($addDevPackagesCommand);
             $application->add($gitignoreCommand);
+            $application->add($setupPHPStanCommand);
 
             $application->get('help')->setHidden();
             $application->get('completion')->setHidden();

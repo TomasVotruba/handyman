@@ -1,0 +1,7 @@
+parameters:
+    level: 0
+    
+    paths:
+        - src
+        # @todo make paths conditional, if they exist
+        - tests
