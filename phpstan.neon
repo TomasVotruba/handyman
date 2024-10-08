@@ -1,7 +1,8 @@
 parameters:
     level: 0
-    
+
     paths:
+        - bin
         - src
         # @todo make paths conditional, if they exist
-        - tests
+        #- tests

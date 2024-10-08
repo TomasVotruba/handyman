@@ -11,6 +11,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Process\Process;
+use TomasVotruba\Handyman\ProjectComposerAnalyser;
 
 final class AddDevPackagesCommand extends Command
 {
@@ -38,6 +39,7 @@ final class AddDevPackagesCommand extends Command
 
     public function __construct(
         private SymfonyStyle $symfonyStyle,
+        private ProjectComposerAnalyser $projectComposerAnalyser
     ) {
         parent::__construct();
     }
@@ -50,7 +52,7 @@ final class AddDevPackagesCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $existingRequireDevPackages = $this->resolveExistingRequireDevPackages();
+        $existingRequireDevPackages = $this->projectComposerAnalyser->getDevPackages();
 
         $missingPackages = array_diff(self::PACKAGES, $existingRequireDevPackages);
         $this->symfonyStyle->title('1. Installing dev tools');
@@ -84,16 +86,5 @@ final class AddDevPackagesCommand extends Command
         Process::fromShellCommandline('composer require --dev ' . implode(' ', $packages), timeout: 120)->mustRun();
 
         $this->symfonyStyle->success('Done');
-    }
-
-    /**
-     * @return string[]
-     */
-    private function resolveExistingRequireDevPackages(): array
-    {
-        $composerJsonContents = FileSystem::read(getcwd() . '/composer.json');
-        $composerJson = Json::decode($composerJsonContents, forceArrays: true);
-
-        return array_keys($composerJson['require-dev'] ?? []);
     }
 }
