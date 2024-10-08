@@ -30,6 +30,7 @@ final class AddDevPackagesCommand extends Command
     private const PHPSTAN_PACKAGES = [
         # phpstan extensions
         'phpstan/phpstan',
+        'phpstan/extension-installer',
         'tomasvotruba/unused-public',
         'tomasvotruba/type-coverage',
         'rector/type-perfect',

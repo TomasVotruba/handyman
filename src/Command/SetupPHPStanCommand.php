@@ -25,12 +25,12 @@ final class SetupPHPStanCommand extends Command
     protected function configure(): void
     {
         $this->setName('setup-phpstan');
-        $this->setDescription('Add typical PHPStan setup');
+        $this->setDescription('Add typical PHPStan setup, add extension installer to load extensions');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->symfonyStyle->title('Creating phpstan.neon...');
+        $this->symfonyStyle->title('1. Creating phpstan.neon...');
 
         if ($this->projectComposerAnalyser->hasPackage('phpstan/phpstan') === false) {
             $this->symfonyStyle->error('Install phpstan/phpstan first');
@@ -39,13 +39,10 @@ final class SetupPHPStanCommand extends Command
         }
 
         if (file_exists(getcwd() . '/phpstan.neon')) {
-            $this->symfonyStyle->error('"phpstan.neon" already exists');
-
-            return self::FAILURE;
-        }
-
-        FileSystem::write(getcwd() . '/phpstan.neon',
-<<<'NEON'
+            $this->symfonyStyle->warning('"phpstan.neon" already exists');
+        } else {
+            FileSystem::write(getcwd() . '/phpstan.neon',
+                <<<'NEON'
 parameters:
     level: 0
     
@@ -54,7 +51,20 @@ parameters:
         # @todo make paths conditional, if they exist
         - tests
 NEON
-        );
+            );
+
+            $this->symfonyStyle->success('Done');
+        }
+
+        $this->symfonyStyle->newLine(2);
+
+        $this->symfonyStyle->title('2. Adding phpstan/extension-installer...');
+
+        $allowPluginProcess = Process::fromShellCommandline('composer config allow-plugins.phpstan/extension-installer "true"');
+        $allowPluginProcess->mustRun();
+
+        $installExtensionInstallerProcess = Process::fromShellCommandline('composer require --dev phpstan/extension-installer');
+        $installExtensionInstallerProcess->mustRun();
 
         $this->symfonyStyle->success('Done');
 

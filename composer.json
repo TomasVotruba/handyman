@@ -15,11 +15,17 @@
         "shipmonk/composer-dependency-analyser": "^1.7",
         "rector/swiss-knife": "^1.0",
         "tomasvotruba/unused-public": "^1.0",
-        "rector/type-perfect": "^1.0"
+        "rector/type-perfect": "^1.0",
+        "phpstan/extension-installer": "^1.4"
     },
     "autoload": {
         "psr-4": {
             "TomasVotruba\\Handyman\\": "src"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
         }
     }
 }
