@@ -22,44 +22,18 @@ final class GithubWorkflowsCommand extends Command
 
     protected function configure(): void
     {
-        $this->setName('github-actions');
-        $this->setDescription('Add typical Github actions to .github/workflows');
+        $this->setName('github-workflows');
+        $this->setDescription('Add typical Github setup to .github/workflows');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        // copy whole directory
-        // @todo
+        $this->symfonyStyle->title('Creating .github/workflows configs...');
 
-        return self::SUCCESS;
-    }
-
-    /**
-     * @param string[] $packages
-     */
-    private function installPackagesAndReport(array $packages): void
-    {
-        if ($packages === []) {
-            $this->symfonyStyle->writeln('All packages are already installed');
-            $this->symfonyStyle->newLine();
-            return;
-        }
-
-        $this->symfonyStyle->listing($packages);
-
-        Process::fromShellCommandline('composer require --dev ' . implode(' ', $packages), timeout: 120)->mustRun();
+        FileSystem::copy(__DIR__ . '/../../templates/github-workflows', getcwd() . '/.github/workflows', false);
 
         $this->symfonyStyle->success('Done');
-    }
 
-    /**
-     * @return string[]
-     */
-    private function resolveExistingRequireDevPackages(): array
-    {
-        $composerJsonContents = FileSystem::read(getcwd() . '/composer.json');
-        $composerJson = Json::decode($composerJsonContents, forceArrays: true);
-
-        return array_keys($composerJson['require-dev'] ?? []);
+        return self::SUCCESS;
     }
 }
