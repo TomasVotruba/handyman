@@ -28,5 +28,10 @@
         "allow-plugins": {
             "phpstan/extension-installer": true
         }
+    },
+    "scripts": {
+        "phpstan": "vendor/bin/phpstan",
+        "check-cs": "vendor/bin/ecs",
+        "fix-cs": "vendor/bin/ecs --fix"
     }
 }

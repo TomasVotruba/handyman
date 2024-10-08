@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace TomasVotruba\Handyman\Command;
 
 use Nette\Utils\FileSystem;
-use Nette\Utils\Json;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

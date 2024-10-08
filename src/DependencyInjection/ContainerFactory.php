@@ -7,13 +7,7 @@ use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Finder\Finder;
-use TomasVotruba\Handyman\Command\AddDevPackagesCommand;
-use TomasVotruba\Handyman\Command\GithubWorkflowsCommand;
-use TomasVotruba\Handyman\Command\GitignoreCommand;
-use TomasVotruba\Handyman\Command\SetupPHPStanCommand;
 use TomasVotruba\Handyman\Finder\ClassFinder;
-use TomasVotruba\UnusedPublic\Utils\Strings;
 
 final class ContainerFactory
 {
