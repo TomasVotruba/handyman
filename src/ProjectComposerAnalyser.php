@@ -6,6 +6,7 @@ namespace TomasVotruba\Handyman;
 
 use Nette\Utils\FileSystem;
 use Nette\Utils\Json;
+use Webmozart\Assert\Assert;
 
 final class ProjectComposerAnalyser
 {
@@ -32,6 +33,9 @@ final class ProjectComposerAnalyser
      */
     public function getDevPackages(): array
     {
-        return array_keys($this->composerJson['require-dev'] ?? []);
+        $packageNames = array_keys($this->composerJson['require-dev'] ?? []);
+        Assert::allString($packageNames);
+
+        return $packageNames;
     }
 }
