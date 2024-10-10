@@ -30,6 +30,7 @@ final class AddDevPackagesCommand extends Command
         # phpstan extensions
         'phpstan/phpstan',
         'phpstan/extension-installer',
+        'phpstan/phpstan-deprecation-rules',
         'tomasvotruba/unused-public',
         'tomasvotruba/type-coverage',
         'rector/type-perfect',
