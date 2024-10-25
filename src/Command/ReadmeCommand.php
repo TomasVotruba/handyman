@@ -23,11 +23,13 @@ final class ReadmeCommand extends Command
     protected function configure(): void
     {
         $this->setName('readme');
-        $this->setDescription('Add README.md file to the root with typical setup');
+        $this->setDescription('Add README.md and LICENSE files to the root with typical setup');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+
+
         // 1. install via composer, dev most likely
 
         // 2. what it does
