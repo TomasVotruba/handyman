@@ -24,9 +24,12 @@ final class ContainerFactory
                 $application->add($command);
             }
 
-            $application->get('help')->setHidden();
-            $application->get('completion')->setHidden();
-            $application->get('list')->setHidden();
+            $application->get('help')
+                ->setHidden();
+            $application->get('completion')
+                ->setHidden();
+            $application->get('list')
+                ->setHidden();
 
             return $application;
         });

@@ -26,14 +26,16 @@ final class GitignoreCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        FileSystem::write(getcwd() . '/.gitignore', <<<'CONTENTS'
+        FileSystem::write(
+            getcwd() . '/.gitignore',
+            <<<'CONTENTS'
 /vendor
 composer.lock
 
 # phpunit test results
 .phpunit.result.cache
 CONTENTS
-);
+        );
 
         $this->symfonyStyle->success('.gitignore added');
 

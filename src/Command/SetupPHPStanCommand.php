@@ -40,7 +40,8 @@ final class SetupPHPStanCommand extends Command
         if (file_exists(getcwd() . '/phpstan.neon')) {
             $this->symfonyStyle->warning('"phpstan.neon" already exists');
         } else {
-            FileSystem::write(getcwd() . '/phpstan.neon',
+            FileSystem::write(
+                getcwd() . '/phpstan.neon',
                 <<<'NEON'
 parameters:
     level: 0
@@ -59,10 +60,14 @@ NEON
 
         $this->symfonyStyle->title('2. Adding phpstan/extension-installer...');
 
-        $allowPluginProcess = Process::fromShellCommandline('composer config allow-plugins.phpstan/extension-installer "true"');
+        $allowPluginProcess = Process::fromShellCommandline(
+            'composer config allow-plugins.phpstan/extension-installer "true"'
+        );
         $allowPluginProcess->mustRun();
 
-        $installExtensionInstallerProcess = Process::fromShellCommandline('composer require --dev phpstan/extension-installer');
+        $installExtensionInstallerProcess = Process::fromShellCommandline(
+            'composer require --dev phpstan/extension-installer'
+        );
         $installExtensionInstallerProcess->mustRun();
 
         $this->symfonyStyle->success('Done');

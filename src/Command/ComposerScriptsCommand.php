@@ -17,9 +17,9 @@ final class ComposerScriptsCommand extends Command
      * @var array<string, string>
      */
     private const COMPOSER_SCRIPTS = [
-        "phpstan" => "vendor/bin/phpstan",
-        "check-cs" => "vendor/bin/ecs",
-        "fix-cs" => "vendor/bin/ecs --fix"
+        'phpstan' => 'vendor/bin/phpstan',
+        'check-cs' => 'vendor/bin/ecs',
+        'fix-cs' => 'vendor/bin/ecs --fix',
     ];
 
     public function __construct(
