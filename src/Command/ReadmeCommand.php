@@ -14,7 +14,7 @@ use TomasVotruba\Handyman\FileSystem\JsonFileSystem;
 final class ReadmeCommand extends Command
 {
     public function __construct(
-        private SymfonyStyle $symfonyStyle,
+        private readonly SymfonyStyle $symfonyStyle,
     ) {
         parent::__construct();
     }

@@ -1,5 +1,6 @@
 {
     "name": "tomasvotruba/handyman",
+    "type": "phpstan-extension",
     "description": "Automate repeated steps when coming to a PHP project or create new package",
     "require": {
         "php": "^8.2",
@@ -14,7 +15,7 @@
     },
     "require-dev": {
         "phpstan/extension-installer": "^1.4",
-        "phpunit/phpunit": "^11.4",
+        "phpunit/phpunit": "^10.5",
         "rector/swiss-knife": "^1.0",
         "rector/type-perfect": "^1.0",
         "symplify/easy-coding-standard": "^12.3",
@@ -32,7 +33,10 @@
     "autoload-dev": {
         "psr-4": {
             "TomasVotruba\\Handyman\\Tests\\": "tests"
-        }
+        },
+        "classmap": [
+            "stubs"
+        ]
     },
     "config": {
         "allow-plugins": {

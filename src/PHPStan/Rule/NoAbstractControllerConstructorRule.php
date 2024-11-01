@@ -34,7 +34,7 @@ final class NoAbstractControllerConstructorRule implements Rule
 
     /**
      * @param Class_ $node
-     * @return RuleError[] errors
+     * @return RuleError[]
      */
     public function processNode(Node $node, Scope $scope): array
     {

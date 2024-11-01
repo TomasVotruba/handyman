@@ -1,26 +1,26 @@
 <?php
 
-namespace TomasVotruba\Handyman\Rector\Tests\Rector\CreateMockToDirectNewRector\Fixture;
+namespace TomasVotruba\Handyman\Tests\Rector\Rector\CreateMockToDirectNewRector\Fixture;
 
-use In2plane\BulkStorageBundle\Document\MonthlyStock;
 use PHPUnit\Framework\TestCase;
+use TomasVotruba\Handyman\Tests\Rector\Rector\CreateMockToDirectNewRector\Source\Table;
 
 final class SomeFileTest extends TestCase
 {
     public function test()
     {
-        $monthlyStockMock = $this->createMock(MonthlyStock::class);
+        $tableMock = $this->createMock(Table::class);
 
-        $monthlyStockMock
+        $tableMock
             ->expects(self::once())
             ->method('isLocked')
             ->willReturn(true);
 
-        $monthlyStockMock
+        $tableMock
             ->expects(self::once())
             ->method('setLocked')
             ->with(false)
-            ->willReturn($monthlyStockMock);
+            ->willReturn($tableMock);
     }
 }
 
@@ -28,18 +28,18 @@ final class SomeFileTest extends TestCase
 -----
 <?php
 
-namespace TomasVotruba\Handyman\Rector\Tests\Rector\CreateMockToDirectNewRector\Fixture;
+namespace TomasVotruba\Handyman\Tests\Rector\Rector\CreateMockToDirectNewRector\Fixture;
 
-use In2plane\BulkStorageBundle\Document\MonthlyStock;
 use PHPUnit\Framework\TestCase;
+use TomasVotruba\Handyman\Tests\Rector\Rector\CreateMockToDirectNewRector\Source\Table;
 
- class SomeFileTest extends TestCase
+final class SomeFileTest extends TestCase
 {
     public function test()
     {
-        $monthlyStockMock = new \In2plane\BulkStorageBundle\Document\MonthlyStock();
+        $table = new \TomasVotruba\Handyman\Tests\Rector\Rector\CreateMockToDirectNewRector\Source\Table();
 
-        $monthlyStockMock->setLocked(true);
+        $table->setLocked(true);
     }
 }
 

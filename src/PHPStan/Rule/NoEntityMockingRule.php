@@ -8,6 +8,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Identifier;
 use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
@@ -20,7 +21,7 @@ use TomasVotruba\Handyman\PHPStan\DoctrineEntityDocumentAnalyser;
  * @see \TomasVotruba\Handyman\Tests\PHPStan\Rule\NoEntityMockingRule\NoEntityMockingRuleTest
  * @implements Rule<MethodCall>
  */
-final class NoEntityMockingRule implements Rule
+final readonly class NoEntityMockingRule implements Rule
 {
     /**
      * @var string
@@ -28,7 +29,7 @@ final class NoEntityMockingRule implements Rule
     public const ERROR_MESSAGE = 'Instead of entity or document mocking, create object directly to get better type support';
 
     public function __construct(
-        private DoctrineEntityDocumentAnalyser $doctrineEntityDocumentAnalyser
+        private ReflectionProvider $reflectionProvider
     ) {
     }
 
@@ -50,8 +51,13 @@ final class NoEntityMockingRule implements Rule
         $firstArg = $node->getArgs()[0];
         $mockedClassType = $scope->getType($firstArg->value);
 
-        foreach ($mockedClassType->getConstantStrings() as $constantString) {
-            if (! $this->doctrineEntityDocumentAnalyser->isEntityClass($constantString)) {
+        foreach ($mockedClassType->getConstantStrings() as $constantStringType) {
+            if (! $this->reflectionProvider->hasClass($constantStringType->getValue())) {
+                continue;
+            }
+
+            $classReflection = $this->reflectionProvider->getClass($constantStringType->getValue());
+            if (! DoctrineEntityDocumentAnalyser::isEntityClass($classReflection)) {
                 continue;
             }
 

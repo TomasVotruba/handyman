@@ -15,8 +15,8 @@ use TomasVotruba\Handyman\ProjectComposerAnalyser;
 final class SetupPHPStanCommand extends Command
 {
     public function __construct(
-        private SymfonyStyle $symfonyStyle,
-        private ProjectComposerAnalyser $projectComposerAnalyser
+        private readonly SymfonyStyle $symfonyStyle,
+        private readonly ProjectComposerAnalyser $projectComposerAnalyser
     ) {
         parent::__construct();
     }

@@ -7,6 +7,7 @@ namespace TomasVotruba\Handyman\PHPStan\Rule;
 use PhpParser\Comment\Doc;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
+use PhpParser\Node\Stmt\Trait_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
@@ -15,7 +16,7 @@ use PHPStan\Rules\RuleErrorBuilder;
 /**
  * @see \TomasVotruba\Handyman\Tests\PHPStan\Rule\NoRequiredOutsideClassRule\NoRequiredOutsideClassRuleTest
  *
- * @implements Rule<Class_>
+ * @implements Rule<Trait_>
  */
 final class NoRequiredOutsideClassRule implements Rule
 {
@@ -24,28 +25,47 @@ final class NoRequiredOutsideClassRule implements Rule
      */
     public const ERROR_MESSAGE = 'Symfony #[Require]/@required should be used only in classes to avoid missuse';
 
+    /**
+     * @var string
+     */
+    private const REQUIRED_ATTRIBUTE = 'Symfony\Contracts\Service\Attribute\Required';
+
     public function getNodeType(): string
     {
-        return ClassMethod::class;
+        return Trait_::class;
     }
 
     /**
-     * @param ClassMethod $node
+     * @param Trait_ $node
      * @return RuleError[]
      */
     public function processNode(Node $node, Scope $scope): array
     {
-        foreach ($node->getAttrGroups() as $attrGroup) {
-            dump($attrGroup->attrs);
-            die;
+        $ruleErrors = [];
+
+        foreach ($node->getMethods() as $classMethod) {
+            if ($this->isAutowiredClassMethod($classMethod)) {
+                $ruleErrors[] = RuleErrorBuilder::message(self::ERROR_MESSAGE)
+                    ->file($scope->getFile())
+                    ->line($classMethod->getLine())
+                    ->build();
+            }
         }
 
-        $docComment = $node->getDocComment();
-        if ($docComment instanceof Doc && str_contains($docComment->getText(), '@required')) {
-            $ruleError = RuleErrorBuilder::message(self::ERROR_MESSAGE)->build();
-            return [$ruleError];
+        return $ruleErrors;
+    }
+
+    private function isAutowiredClassMethod(ClassMethod $classMethod): bool
+    {
+        foreach ($classMethod->getAttrGroups() as $attributeGroup) {
+            foreach ($attributeGroup->attrs as $attr) {
+                if ($attr->name->toString() === self::REQUIRED_ATTRIBUTE) {
+                    return true;
+                }
+            }
         }
 
-        return [];
+        $docComment = $classMethod->getDocComment();
+        return $docComment instanceof Doc && str_contains($docComment->getText(), '@required');
     }
 }

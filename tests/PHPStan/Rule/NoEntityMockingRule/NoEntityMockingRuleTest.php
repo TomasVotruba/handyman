@@ -40,7 +40,6 @@ final class NoEntityMockingRuleTest extends RuleTestCase
     protected function getRule(): Rule
     {
         $container = self::getContainer();
-
         return $container->getByType(NoEntityMockingRule::class);
     }
 }

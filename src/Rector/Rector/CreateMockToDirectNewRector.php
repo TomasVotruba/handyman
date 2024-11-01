@@ -17,13 +17,12 @@ use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Expression;
 use PhpParser\NodeFinder;
-use PHPStan\PhpDoc\ResolvedPhpDocBlock;
-use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\ReflectionProvider;
 use Rector\Exception\ShouldNotHappenException;
 use Rector\PhpParser\Node\Value\ValueResolver;
 use Rector\Rector\AbstractRector;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
+use TomasVotruba\Handyman\PHPStan\DoctrineEntityDocumentAnalyser;
 
 /**
  * @see \TomasVotruba\Handyman\Tests\Rector\Rector\CreateMockToDirectNewRector\CreateMockToDirectNewRectorTest
@@ -32,7 +31,7 @@ final class CreateMockToDirectNewRector extends AbstractRector
 {
     public function __construct(
         private readonly ValueResolver $valueResolver,
-        private readonly ReflectionProvider $reflectionProvider
+        private readonly ReflectionProvider $reflectionProvider,
     ) {
     }
 
@@ -64,7 +63,6 @@ final class CreateMockToDirectNewRector extends AbstractRector
         }
 
         foreach ($mockedVariablesToTypes as $mockedVariableName => $mockedClass) {
-
             foreach ($node->stmts as $key => $stmt) {
                 if (! $stmt instanceof Expression) {
                     continue;
@@ -108,7 +106,7 @@ final class CreateMockToDirectNewRector extends AbstractRector
         // 3. replace value without "mock" in name
         $mockedVariableNames = array_keys($mockedVariablesToTypes);
 
-        $this->traverseNodesWithCallable($node, function (Node $node) use ($mockedVariableNames) {
+        $this->traverseNodesWithCallable($node, function (Node $node) use ($mockedVariableNames): ?Variable {
             if (! $node instanceof Variable) {
                 return null;
             }
@@ -125,20 +123,6 @@ final class CreateMockToDirectNewRector extends AbstractRector
         });
 
         return $node;
-    }
-
-    private function hasDocumentDocblock(ClassReflection $classReflection): bool
-    {
-        $resolvedDocblock = $classReflection->getResolvedPhpDoc();
-        if (! $resolvedDocblock instanceof ResolvedPhpDocBlock) {
-            return false;
-        }
-
-        if (str_contains($resolvedDocblock->getPhpDocString(), '@Document')) {
-            return true;
-        }
-
-        return str_contains($resolvedDocblock->getPhpDocString(), '@MongoDB\Document');
     }
 
     /**
@@ -190,7 +174,7 @@ final class CreateMockToDirectNewRector extends AbstractRector
                 continue;
             }
 
-            if (! $this->hasDocumentDocblock($mockClassReflection)) {
+            if (! DoctrineEntityDocumentAnalyser::isEntityClass($mockClassReflection)) {
                 continue;
             }
 
@@ -208,7 +192,7 @@ final class CreateMockToDirectNewRector extends AbstractRector
     {
         $nodeFinder = new NodeFinder();
 
-        $methodNameMethodCall = $nodeFinder->findFirst($methodCall, function (Node $node) use ($methodName) {
+        $methodNameMethodCall = $nodeFinder->findFirst($methodCall, function (Node $node) use ($methodName): bool {
             if (! $node instanceof MethodCall) {
                 return false;
             }
@@ -255,7 +239,7 @@ final class CreateMockToDirectNewRector extends AbstractRector
     {
         $nodeFinder = new NodeFinder();
 
-        $foundMethodCall = $nodeFinder->findFirst($methodCall, function (Node $node) use ($desiredVariableName) {
+        $foundMethodCall = $nodeFinder->findFirst($methodCall, function (Node $node) use ($desiredVariableName): bool {
             if (! $node instanceof MethodCall) {
                 return false;
             }

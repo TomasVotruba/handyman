@@ -8,6 +8,7 @@ use PhpParser\Node;
 use PhpParser\Node\IntersectionType;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\UnionType;
+use PHPUnit\Framework\MockObject\MockObject;
 use Rector\PHPUnit\NodeAnalyzer\TestsNodeAnalyzer;
 use Rector\Rector\AbstractRector;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
@@ -90,7 +91,7 @@ CODE_SAMPLE
             }
 
             foreach ($complexType->types as $intersectionType) {
-                if ($this->isName($intersectionType, 'PHPUnit\Framework\MockObject\MockObject')) {
+                if ($this->isName($intersectionType, MockObject::class)) {
                     $property->type = $intersectionType;
                     $hasChanged = true;
 

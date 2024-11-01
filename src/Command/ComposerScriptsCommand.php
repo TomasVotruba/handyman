@@ -23,7 +23,7 @@ final class ComposerScriptsCommand extends Command
     ];
 
     public function __construct(
-        private SymfonyStyle $symfonyStyle,
+        private readonly SymfonyStyle $symfonyStyle,
     ) {
         parent::__construct();
     }

@@ -5,28 +5,17 @@ declare(strict_types=1);
 namespace TomasVotruba\Handyman\PHPStan;
 
 use PHPStan\PhpDoc\ResolvedPhpDocBlock;
-use PHPStan\Reflection\ReflectionProvider;
-use PHPStan\Type\Constant\ConstantStringType;
+use PHPStan\Reflection\ClassReflection;
 
-final class DoctrineEntityDocumentAnalyser
+final readonly class DoctrineEntityDocumentAnalyser
 {
     /**
      * @var string[]
      */
     private const ENTITY_DOCBLOCK_MARKERS = ['@Document', '@ORM\\Document', '@Entity', '@ORM\\Entity'];
 
-    public function __construct(
-        private ReflectionProvider $reflectionProvider
-    ) {
-    }
-
-    public function isEntityClass(ConstantStringType $constantStringType): bool
+    public static function isEntityClass(ClassReflection $classReflection): bool
     {
-        if (! $this->reflectionProvider->hasClass($constantStringType->getValue())) {
-            return false;
-        }
-
-        $classReflection = $this->reflectionProvider->getClass($constantStringType->getValue());
         $resolvedPhpDocBlock = $classReflection->getResolvedPhpDoc();
         if (! $resolvedPhpDocBlock instanceof ResolvedPhpDocBlock) {
             return false;

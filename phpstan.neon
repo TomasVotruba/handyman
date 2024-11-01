@@ -1,3 +1,6 @@
+includes:
+    - config/phpstan-rules.neon
+
 parameters:
     level: 8
 
@@ -12,3 +15,9 @@ parameters:
 
         # overly complex details
         - '#return type with generic interface PHPStan\\Rules\\Rule does not specify its types: TNodeType#'
+        - '#Method (.*?)::testRule\(\) has parameter \$expectedErrorsWithLines with no value type specified in iterable type array#'
+
+    excludePaths:
+        # part of tests
+        - */Source/*
+        - */Fixture/*

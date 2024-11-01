@@ -35,9 +35,9 @@ final class ContainerFactory
         });
 
         $container->singleton(SymfonyStyle::class, function (): SymfonyStyle {
-            $input = new ArgvInput();
-            $output = new ConsoleOutput();
-            return new SymfonyStyle($input, $output);
+            $argvInput = new ArgvInput();
+            $consoleOutput = new ConsoleOutput();
+            return new SymfonyStyle($argvInput, $consoleOutput);
         });
 
         return $container;

@@ -2,4 +2,4 @@
 composer.lock
 
 # phpunit test results
-.phpunit.result.cache
+.phpunit.cache
