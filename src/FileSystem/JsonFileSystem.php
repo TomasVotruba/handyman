@@ -9,7 +9,7 @@ use Nette\Utils\Json;
 
 final class JsonFileSystem
 {
-    public static function read(string $filePath, string $key)
+    public static function readString(string $filePath, string $key): ?string
     {
         $fileContents = FileSystem::read($filePath);
         $json = Json::decode($fileContents, forceArrays: true);

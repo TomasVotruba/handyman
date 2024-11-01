@@ -4,5 +4,11 @@ parameters:
     paths:
         - bin
         - src
-        # @todo make paths conditional, if they exist
-        #- tests
+        - tests
+
+    ignoreErrors:
+        - '#Public constant "TomasVotruba\\Handyman\\(.*?)::ERROR_MESSAGE" is never used#'
+        - '#PHPStan\\Testing\\RuleTestCase but does not specify its types#'
+
+        # overly complex details
+        - '#return type with generic interface PHPStan\\Rules\\Rule does not specify its types: TNodeType#'
