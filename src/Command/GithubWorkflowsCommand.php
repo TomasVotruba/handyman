@@ -13,7 +13,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 final class GithubWorkflowsCommand extends Command
 {
     public function __construct(
-        private SymfonyStyle $symfonyStyle,
+        private readonly SymfonyStyle $symfonyStyle,
     ) {
         parent::__construct();
     }

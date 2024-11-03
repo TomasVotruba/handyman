@@ -1,0 +1,1021 @@
+{
+    "App\\AttractionBundle\\Controller\\AttractionLocationController": {
+        "path": "/attraction/locationinfo/{siteId}/{attractionId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "attractionId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionLocationController"
+        },
+        "methods": []
+    },
+    "App\\CartBundle\\Controller\\CartAddHotelRoomController": {
+        "path": "/cart/add/hotelroom/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": 77,
+            "_controller": "App\\CartBundle\\Controller\\CartAddHotelRoomController"
+        },
+        "methods": []
+    },
+    "App\\HotelBundle\\Controller\\HotelReviewsController": {
+        "path": "/hotel/reviews/{siteId}/{hotelId}",
+        "requirements": {
+            "hotelId": "\\d+",
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\HotelBundle\\Controller\\HotelReviewsController"
+        },
+        "methods": []
+    },
+    "App\\HotelBundle\\Controller\\RateController": {
+        "path": "/hotel/rates/{siteId}/{hotelId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "hotelId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\HotelBundle\\Controller\\RateController"
+        },
+        "methods": []
+    },
+    "App\\PackageBundle\\Controller\\PackageTicketOnlyUpdateController": {
+        "path": "/package/ticket-only/{siteId}/{packageId}/update",
+        "requirements": {
+            "siteId": "\\d+",
+            "packageId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\PackageBundle\\Controller\\PackageTicketOnlyUpdateController"
+        },
+        "methods": []
+    },
+    "App\\PackageBundle\\Controller\\PackageTicketUpdateController": {
+        "path": "/package/ticket/{siteId}/{packageId}/update",
+        "requirements": {
+            "siteId": "\\d+",
+            "packageId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\PackageBundle\\Controller\\PackageTicketUpdateController"
+        },
+        "methods": []
+    },
+    "_preview_error": {
+        "path": "/_error/{code}.{_format}",
+        "requirements": {
+            "code": "\\d+"
+        },
+        "defaults": {
+            "_controller": "error_controller::preview",
+            "_format": "html"
+        },
+        "methods": []
+    },
+    "app_cart_cartaddpromo__invoke": {
+        "path": "/cart/promo/add/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": 77,
+            "itemId": 0,
+            "_controller": "App\\CartBundle\\Controller\\CartAddPromoController"
+        },
+        "methods": [
+            "POST"
+        ]
+    },
+    "ares_attraction_category_list": {
+        "path": "/attraction/category/{siteId}/{attractionCategoryId}/{locationId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "locationId": "[GIMgim]\\d+",
+            "packageCategoryId": "\\d+"
+        },
+        "defaults": {
+            "siteId": 0,
+            "locationId": 0,
+            "attractionCategoryId": null,
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionListController"
+        },
+        "methods": []
+    },
+    "ares_attraction_getattractionpackages": {
+        "path": "/attraction/packages/{siteId}/{attractionId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "attractionId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionPackagesController"
+        },
+        "methods": []
+    },
+    "ares_attraction_getattractions": {
+        "path": "/attraction/list/{siteId}/{locationId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "locationId": "[GIMgim]\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionListController"
+        },
+        "methods": []
+    },
+    "ares_attraction_getattractions_cross_sell": {
+        "path": "/attraction/cross/{siteId}/{locationId}/{type}",
+        "requirements": {
+            "siteId": "\\d+",
+            "locationId": "[GIMgim]\\d+",
+            "type": "\\w+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionCrossSellController"
+        },
+        "methods": []
+    },
+    "ares_attraction_getattractions_nolocationid": {
+        "path": "/attraction/list/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionListController"
+        },
+        "methods": []
+    },
+    "ares_attraction_getattractions_nositeid": {
+        "path": "/attraction/list",
+        "requirements": [],
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionListController"
+        },
+        "methods": []
+    },
+    "ares_attraction_getgallery": {
+        "path": "/attraction/gallery/{siteId}/{attractionId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "attractionId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionGalleryController"
+        },
+        "methods": []
+    },
+    "ares_attraction_getgallery_thumb": {
+        "path": "/attraction/gallery/{siteId}/{attractionId}/thumb",
+        "requirements": {
+            "siteId": "\\d+",
+            "attractionId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionGalleryThumbController"
+        },
+        "methods": []
+    },
+    "ares_attraction_getpoolavail": {
+        "path": "/attraction/pool/availability/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionPoolAvailabilityController"
+        },
+        "methods": []
+    },
+    "ares_attraction_getreviews": {
+        "path": "/attraction/reviews/{siteId}/{attractionId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "attractionId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionReviewsController"
+        },
+        "methods": []
+    },
+    "ares_attraction_getshowtimeavail": {
+        "path": "/attraction/showtime/availability/{attractionId}/{ticketId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionShowtimeAvailabilityController"
+        },
+        "methods": []
+    },
+    "ares_attraction_getsingleattraction": {
+        "path": "/attraction/single/{siteId}/{attractionId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "attractionId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionSingleController"
+        },
+        "methods": []
+    },
+    "ares_attraction_getsingleattractionticket": {
+        "path": "/attraction/single/{siteId}/{attractionId}/{ticketId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "attractionId": "\\d+",
+            "ticketId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionSingleController"
+        },
+        "methods": []
+    },
+    "ares_attraction_gettickets": {
+        "path": "/attraction/tickets/{siteId}/{attractionId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "attractionId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionTicketsController"
+        },
+        "methods": []
+    },
+    "ares_attraction_legacy_page": {
+        "path": "/attraction/page/{siteId}/{locationId}/{page}",
+        "requirements": {
+            "siteId": "\\d+",
+            "locationId": "[GIMgim]\\d+",
+            "page": "\\d+"
+        },
+        "defaults": {
+            "page": "1",
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionListController"
+        },
+        "methods": []
+    },
+    "ares_attraction_legacy_sort": {
+        "path": "/attraction/sort/{siteId}/{locationId}/{sort}",
+        "requirements": {
+            "siteId": "\\d+",
+            "locationId": "[GIMgim]\\d+",
+            "sort": "\\w+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\AttractionListController"
+        },
+        "methods": []
+    },
+    "ares_attribution": {
+        "path": "/site/attribution/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": "77",
+            "_controller": "App\\AppBundle\\Controller\\SiteAttributionController"
+        },
+        "methods": []
+    },
+    "ares_cart_addpackage": {
+        "path": "/cart/add/package/{siteId}/{packageId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "packageId": "\\d+"
+        },
+        "defaults": {
+            "siteId": 77,
+            "_controller": "App\\CartBundle\\Controller\\CartAddPackageController"
+        },
+        "methods": []
+    },
+    "ares_cart_addticket": {
+        "path": "/cart/add/ticket/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": 77,
+            "_controller": "App\\CartBundle\\Controller\\CartAddTicketController"
+        },
+        "methods": []
+    },
+    "ares_cart_deleteitem": {
+        "path": "/cart/delete/{siteId}/{itemId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "itemId": "\\w+"
+        },
+        "defaults": {
+            "siteId": 77,
+            "itemId": 0,
+            "_controller": "App\\CartBundle\\Controller\\CartDeleteItemController"
+        },
+        "methods": []
+    },
+    "ares_cart_updatedonation": {
+        "path": "/cart/update/donation/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": 77,
+            "_controller": "App\\CartBundle\\Controller\\CartUpdateDonationController"
+        },
+        "methods": []
+    },
+    "ares_cart_updateticket": {
+        "path": "/cart/update/ticket/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": 77,
+            "_controller": "App\\CartBundle\\Controller\\CartUpdateTickerController"
+        },
+        "methods": []
+    },
+    "ares_cart_validatepromo": {
+        "path": "/cart/promo/valid/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": 77,
+            "itemId": 0,
+            "_controller": "App\\CartBundle\\Controller\\CartValidatePromoController"
+        },
+        "methods": [
+            "POST"
+        ]
+    },
+    "ares_cart_view": {
+        "path": "/cart/view/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": 77,
+            "_controller": "App\\CartBundle\\Controller\\CartViewController"
+        },
+        "methods": []
+    },
+    "ares_groupform": {
+        "path": "/site/groups/inquiry/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": "77",
+            "_controller": "App\\AppBundle\\Controller\\SiteGroupsInquiryController"
+        },
+        "methods": []
+    },
+    "ares_groupform_submit": {
+        "path": "/site/groups/inquiry/{siteId}/submit",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": "77",
+            "_controller": "App\\AppBundle\\Controller\\SiteGroupsInquirySubmitController"
+        },
+        "methods": []
+    },
+    "ares_help": {
+        "path": "/site/help/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": "77",
+            "_controller": "App\\AppBundle\\Controller\\SiteHelpController"
+        },
+        "methods": []
+    },
+    "ares_hotel_button_with_dates": {
+        "path": "/hotel/button/list",
+        "requirements": [],
+        "defaults": {
+            "_controller": "App\\AppBundle\\Controller\\HotelButtonListController"
+        },
+        "methods": []
+    },
+    "ares_hotel_direct": {
+        "path": "/hotel/direct/{siteId}/{hotelId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "hotelId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\HotelBundle\\Controller\\HotelBuyDirectController"
+        },
+        "methods": []
+    },
+    "ares_hotel_getgallery": {
+        "path": "/hotel/gallery/{siteId}/{hotelId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "hotelId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\HotelBundle\\Controller\\HotelGalleryController"
+        },
+        "methods": []
+    },
+    "ares_hotel_gethotelpackages": {
+        "path": "/hotel/packages/{siteId}/{hotelId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "hotelId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\HotelBundle\\Controller\\HotelPackageController"
+        },
+        "methods": []
+    },
+    "ares_hotel_gethotels": {
+        "path": "/hotel/list/{siteId}/{locationId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "locationId": "[GIMgim]\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\HotelBundle\\Controller\\HotelListController"
+        },
+        "methods": []
+    },
+    "ares_hotel_gethotels_content": {
+        "path": "/hotel/list/content/{siteId}/{locationId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "locationId": "[GIMgim]\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\HotelBundle\\Controller\\HotelListContentController"
+        },
+        "methods": []
+    },
+    "ares_hotel_gethotels_content_nolocationid": {
+        "path": "/hotel/list/content/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\HotelBundle\\Controller\\HotelListContentController"
+        },
+        "methods": []
+    },
+    "ares_hotel_gethotels_nolocationid": {
+        "path": "/hotel/list/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\HotelBundle\\Controller\\HotelListController"
+        },
+        "methods": []
+    },
+    "ares_hotel_gethotels_nositeid": {
+        "path": "/hotel/list",
+        "requirements": [],
+        "defaults": {
+            "_controller": "App\\HotelBundle\\Controller\\HotelListController"
+        },
+        "methods": []
+    },
+    "ares_hotel_getsinglehotel": {
+        "path": "/hotel/single/{siteId}/{hotelId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "hotelId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\HotelBundle\\Controller\\HotelSingleController"
+        },
+        "methods": []
+    },
+    "ares_hotel_legacy_page": {
+        "path": "/hotel/page/{siteId}/{locationId}/{page}",
+        "requirements": {
+            "siteId": "\\d+",
+            "locationId": "[GIMgim]\\d+",
+            "page": "\\d+"
+        },
+        "defaults": {
+            "page": "1",
+            "_controller": "App\\HotelBundle\\Controller\\HotelListController"
+        },
+        "methods": []
+    },
+    "ares_hotel_legacy_sort": {
+        "path": "/hotel/sort/{siteId}/{locationId}/{sort}",
+        "requirements": {
+            "siteId": "\\d+",
+            "locationId": "[GIMgim]\\d+",
+            "sort": "\\w+"
+        },
+        "defaults": {
+            "sort": "rank",
+            "_controller": "App\\HotelBundle\\Controller\\HotelListController"
+        },
+        "methods": []
+    },
+    "ares_index": {
+        "path": "/site/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": "77",
+            "_controller": "App\\AppBundle\\Controller\\SiteIndexController"
+        },
+        "methods": []
+    },
+    "ares_landing": {
+        "path": "/site/welcome/{siteId}/{token}",
+        "requirements": {
+            "siteId": "\\d+",
+            "token": "[\\w-]+"
+        },
+        "defaults": {
+            "siteId": "77",
+            "token": "welcome",
+            "_controller": "App\\AppBundle\\Controller\\SiteWelcomeController"
+        },
+        "methods": []
+    },
+    "ares_order_barcode": {
+        "path": "/order/barcode/{siteId}/{barcode}",
+        "requirements": {
+            "siteId": "\\d+",
+            "barcode": "[\\w+%=/]+"
+        },
+        "defaults": {
+            "_controller": "App\\CartBundle\\Controller\\OrderBarcodeController"
+        },
+        "methods": []
+    },
+    "ares_order_billinginfo": {
+        "path": "/order/billinginfo/{siteId}/{cartId}/{agent}",
+        "requirements": {
+            "siteId": "\\d+",
+            "cartId": "\\w+",
+            "agent": "\\d+"
+        },
+        "defaults": {
+            "agent": 0,
+            "_controller": "App\\CartBundle\\Controller\\OrderBillingInfoController"
+        },
+        "methods": []
+    },
+    "ares_order_confirmation": {
+        "path": "/order/confirmation/{siteId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "orderId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\CartBundle\\Controller\\OrderConfirmationController"
+        },
+        "methods": []
+    },
+    "ares_order_eticket": {
+        "path": "/order/eticket/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\CartBundle\\Controller\\OrderETicketController"
+        },
+        "methods": []
+    },
+    "ares_order_etickets": {
+        "path": "/order/etickets/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\CartBundle\\Controller\\OrderEticketsController"
+        },
+        "methods": []
+    },
+    "ares_order_trippreferences": {
+        "path": "/order/preferences/{siteId}/{cartId}/{agent}",
+        "requirements": {
+            "siteId": "\\d+",
+            "cartId": "\\w+",
+            "agent": "\\d+"
+        },
+        "defaults": {
+            "agent": 0,
+            "_controller": "App\\CartBundle\\Controller\\OrderPreferencesController"
+        },
+        "methods": []
+    },
+    "ares_order_view_email": {
+        "path": "/order/view/email/{siteId}/{hash}",
+        "requirements": {
+            "siteId": "\\d+",
+            "hash": "[\\w+%=/]+"
+        },
+        "defaults": {
+            "_controller": "App\\CartBundle\\Controller\\OrderViewEmailController"
+        },
+        "methods": []
+    },
+    "ares_package_cart_edit": {
+        "path": "/package/cart/{siteId}/{packageId}/{cartItemId}/{state}/edit",
+        "requirements": {
+            "siteId": "\\d+",
+            "packageId": "\\d+",
+            "cartItemId": "\\w+",
+            "state": "\\d"
+        },
+        "defaults": {
+            "_controller": "App\\PackageBundle\\Controller\\PackageCartEditController"
+        },
+        "methods": []
+    },
+    "ares_package_categories": {
+        "path": "/package/categories/{siteId}/{locationId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "locationId": "[GIMgim]\\d+"
+        },
+        "defaults": {
+            "siteId": 0,
+            "locationId": "",
+            "_controller": "App\\PackageBundle\\Controller\\PackageCategoriesController"
+        },
+        "methods": []
+    },
+    "ares_package_category_list": {
+        "path": "/package/category/{siteId}/{packageCategoryId}/{locationId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "locationId": "[GIMgim]\\d+",
+            "packageCategoryId": "\\d+"
+        },
+        "defaults": {
+            "siteId": 0,
+            "locationId": "",
+            "packageCategoryId": 0,
+            "_controller": "App\\PackageBundle\\Controller\\PackageListController"
+        },
+        "methods": []
+    },
+    "ares_package_hotel_show": {
+        "path": "/package/hotel/{siteId}/{packageId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "packageId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\PackageBundle\\Controller\\PackageHotelController"
+        },
+        "methods": []
+    },
+    "ares_package_hotel_update": {
+        "path": "/package/hotel/{siteId}/{packageId}/update",
+        "requirements": {
+            "siteId": "\\d+",
+            "packageId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\PackageBundle\\Controller\\PackageHotelUpdateController"
+        },
+        "methods": []
+    },
+    "ares_package_hotelinfo": {
+        "path": "/package/hotel/rooms/{siteId}/{packageId}/{hotelId}/{roomId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "packageId": "\\d+",
+            "hotelId": "\\d+",
+            "roomId": "[\\w\\|\\=-]+"
+        },
+        "defaults": {
+            "_controller": "App\\PackageBundle\\Controller\\PackageHotelRoomsController"
+        },
+        "methods": []
+    },
+    "ares_package_info": {
+        "path": "/package/info/{siteId}/{packageId}/{hotelId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "packageId": "\\d+",
+            "hotelId": "\\d+"
+        },
+        "defaults": {
+            "siteId": 0,
+            "packageId": 0,
+            "hotelId": 0,
+            "_controller": "App\\PackageBundle\\Controller\\PackageInfoController"
+        },
+        "methods": []
+    },
+    "ares_package_init": {
+        "path": "/package/init/{siteId}/{packageId}/{hotelId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "packageId": "\\d+",
+            "hotelId": "\\d+"
+        },
+        "defaults": {
+            "hotelId": 0,
+            "_controller": "App\\PackageBundle\\Controller\\PackageInitController"
+        },
+        "methods": []
+    },
+    "ares_package_init__deprecated": {
+        "path": "/package/submit/{siteId}/{packageId}/{hotelId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "packageId": "\\d+",
+            "hotelId": "\\d+"
+        },
+        "defaults": {
+            "hotelId": 0,
+            "packageId": 0,
+            "_controller": "App\\PackageBundle\\Controller\\PackageInitController"
+        },
+        "methods": []
+    },
+    "ares_package_list": {
+        "path": "/package/list/{siteId}/{locationId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "locationId": "[GIMgim]\\d+"
+        },
+        "defaults": {
+            "siteId": 0,
+            "locationId": "",
+            "packageCategoryId": 0,
+            "_controller": "App\\PackageBundle\\Controller\\PackageListController"
+        },
+        "methods": []
+    },
+    "ares_package_ticket_show": {
+        "path": "/package/ticket/{siteId}/{packageId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "packageId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\PackageBundle\\Controller\\PackageTicketController"
+        },
+        "methods": []
+    },
+    "ares_packaging_prototype": {
+        "path": "/ux/package/list/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": "77",
+            "_controller": "App\\AppBundle\\Controller\\Tooling\\PackagingPrototypeController"
+        },
+        "methods": []
+    },
+    "ares_policy": {
+        "path": "/site/policy/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": "77",
+            "_controller": "App\\AppBundle\\Controller\\SitePolicyController"
+        },
+        "methods": []
+    },
+    "ares_privacy": {
+        "path": "/site/privacy/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": "77",
+            "_controller": "App\\AppBundle\\Controller\\SitePrivacyController"
+        },
+        "methods": []
+    },
+    "ares_rakuten_landing_page": {
+        "path": "/rakuten/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": "77",
+            "_controller": "App\\AppBundle\\Controller\\RakutenController"
+        },
+        "methods": []
+    },
+    "ares_security": {
+        "path": "/site/security/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": "77",
+            "_controller": "App\\AppBundle\\Controller\\SiteSecurityController"
+        },
+        "methods": []
+    },
+    "ares_session_value_authorization": {
+        "path": "/entry",
+        "requirements": [],
+        "defaults": {
+            "_controller": "App\\AppBundle\\Controller\\SessionValueAuthorizationController"
+        },
+        "methods": []
+    },
+    "ares_sitemap": {
+        "path": "/site/sitemap/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": "77",
+            "_controller": "App\\AppBundle\\Controller\\SitemapController"
+        },
+        "methods": []
+    },
+    "ares_terms": {
+        "path": "/site/terms/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": "77",
+            "_controller": "App\\AppBundle\\Controller\\SiteTermsController"
+        },
+        "methods": []
+    },
+    "ares_theme_preview": {
+        "path": "/ux/{siteId}/preview/{isOn}",
+        "requirements": {
+            "siteId": "\\d+",
+            "isOn": "(y|n)"
+        },
+        "defaults": {
+            "siteId": "77",
+            "_controller": "App\\AppBundle\\Controller\\Tooling\\ThemePreviewController"
+        },
+        "methods": []
+    },
+    "ares_ticket_gettickets": {
+        "path": "/ticket/list/{siteId}/{locationId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "locationId": "[GIMgim]\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\TicketListController"
+        },
+        "methods": []
+    },
+    "ares_ticket_gettickets_category": {
+        "path": "/ticket/list/{siteId}/{locationId}/{categoryId}",
+        "requirements": {
+            "siteId": "\\d+",
+            "locationId": "[GIMgim]\\d+",
+            "categoryId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\TicketListController"
+        },
+        "methods": []
+    },
+    "ares_ticket_gettickets_nolocationid": {
+        "path": "/ticket/list/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\AttractionBundle\\Controller\\TicketListController"
+        },
+        "methods": []
+    },
+    "ares_ux": {
+        "path": "/ux/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "siteId": "77",
+            "_controller": "App\\AppBundle\\Controller\\Tooling\\StyleGuideController"
+        },
+        "methods": []
+    },
+    "fos_js_routing_js": {
+        "path": "/js/routing.{_format}",
+        "requirements": {
+            "_format": "js|json"
+        },
+        "defaults": {
+            "_controller": "fos_js_routing.controller::indexAction",
+            "_format": "js"
+        },
+        "methods": [
+            "GET"
+        ]
+    },
+    "legacy_dash_urls_support": {
+        "path": "/{siteId}/-/{productType}/{productId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "_controller": [
+                "App\\AppBundle\\Controller\\SiteLegacyUrlController",
+                "translateLegacyUrlWithDashesAction"
+            ]
+        },
+        "methods": []
+    },
+    "legacy_dash_urls_support_without_productId": {
+        "path": "/{siteId}/-/{productType}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "_controller": [
+                "App\\AppBundle\\Controller\\SiteLegacyUrlController",
+                "translateLegacyUrlWithDashesAction"
+            ]
+        },
+        "methods": []
+    },
+    "legacy_url_support": {
+        "path": "/{anything}",
+        "requirements": {
+            "anything": ".+"
+        },
+        "defaults": {
+            "_controller": [
+                "App\\AppBundle\\Controller\\SiteLegacyUrlController",
+                "translateLegacyUrlsAction"
+            ]
+        },
+        "methods": []
+    },
+    "logout": {
+        "path": "/{siteId}/logout",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\SecurityBundle\\Controller\\LogoutController"
+        },
+        "methods": []
+    },
+    "recommends_path_shortener": {
+        "path": "/{siteId}",
+        "requirements": [],
+        "defaults": {
+            "_controller": [
+                "Symfony\\Bundle\\FrameworkBundle\\Controller\\RedirectController",
+                "redirectAction"
+            ],
+            "route": "ares_landing",
+            "permanent": true
+        },
+        "methods": []
+    },
+    "recommends_path_shortener_www": {
+        "path": "/{siteId}",
+        "requirements": [],
+        "defaults": {
+            "_controller": [
+                "Symfony\\Bundle\\FrameworkBundle\\Controller\\RedirectController",
+                "redirectAction"
+            ],
+            "route": "ares_landing",
+            "permanent": true
+        },
+        "methods": []
+    },
+    "root": {
+        "path": "/",
+        "requirements": [],
+        "defaults": {
+            "_controller": "App\\AppBundle\\Controller\\SiteIndexController"
+        },
+        "methods": []
+    },
+    "site_root": {
+        "path": "/{siteId}",
+        "requirements": {
+            "siteId": "\\d+"
+        },
+        "defaults": {
+            "_controller": "App\\AppBundle\\Controller\\SiteIndexController",
+            "siteId": 77
+        },
+        "methods": []
+    }
+}
