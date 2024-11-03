@@ -1,2 +1,0 @@
-rules:
-    - TomasVotruba\Handyman\PHPStan\Rule\NoAbstractControllerConstructorRule
