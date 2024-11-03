@@ -23,7 +23,8 @@
         "tomasvotruba/type-coverage": "^1.0",
         "tomasvotruba/class-leak": "^1.0",
         "tomasvotruba/unused-public": "^1.0",
-        "tracy/tracy": "^2.10"
+        "tracy/tracy": "^2.10",
+        "nikic/php-parser": "^4.19"
     },
     "autoload": {
         "psr-4": {

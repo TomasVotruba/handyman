@@ -31,16 +31,8 @@ final class NoAbstractControllerConstructorRuleTest extends RuleTestCase
         yield [__DIR__ . '/Fixture/SkipNonAbstractController.php', []];
     }
 
-    /**
-     * @return string[]
-     */
-    public static function getAdditionalConfigFiles(): array
-    {
-        return [__DIR__ . '/config/configured_rule.neon'];
-    }
-
     protected function getRule(): Rule
     {
-        return self::getContainer()->getByType(NoAbstractControllerConstructorRule::class);
+        return new NoAbstractControllerConstructorRule();
     }
 }
