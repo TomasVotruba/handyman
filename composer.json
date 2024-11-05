@@ -8,12 +8,11 @@
         "symfony/console": "^7.1",
         "symfony/process": "^7.1",
         "symfony/finder": "^7.1",
-        "rector/rector": "^1.2",
         "nette/utils": "^4.0",
-        "phpstan/phpstan": "^1.12",
-        "symplify/rule-doc-generator-contracts": "^11.2"
+        "phpstan/phpstan": "^1.12"
     },
     "require-dev": {
+        "rector/rector": "^1.2",
         "phpstan/extension-installer": "^1.4",
         "phpunit/phpunit": "^10.5",
         "rector/swiss-knife": "^1.0",
