@@ -11,7 +11,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Process\Process;
 use TomasVotruba\Handyman\ProjectComposerAnalyser;
 
-final class AddDevPackagesCommand extends Command
+final class DevPackagesCommand extends Command
 {
     /**
      * @var string[]
@@ -45,8 +45,8 @@ final class AddDevPackagesCommand extends Command
 
     protected function configure(): void
     {
-        $this->setName('add-dev-packages');
-        $this->setDescription('Add typical dev packages to composer.json');
+        $this->setName('dev-packages');
+        $this->setDescription('Add handy dev packages to composer.json');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
