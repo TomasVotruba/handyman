@@ -9,8 +9,9 @@ use PHPStan\Rule\NoGetRepositoryOutsideServiceRule\Source\SomeRandomEntity;
 
 final readonly class SkipInRepository
 {
-    public function __construct(private EntityManager $entityManager)
-    {
+    public function __construct(
+        private EntityManager $entityManager
+    ) {
         $someRepository = $this->entityManager->getRepository(SomeRandomEntity::class);
     }
 }

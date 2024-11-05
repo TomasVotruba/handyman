@@ -23,10 +23,7 @@ final class NoParentRepositoryRuleTest extends RuleTestCase
 
     public static function provideData(): Iterator
     {
-        yield [__DIR__ . '/Fixture/SomeRepository.php', [[
-            NoParentRepositoryRule::ERROR_MESSAGE,
-            9,
-        ]]];
+        yield [__DIR__ . '/Fixture/SomeRepository.php', [[NoParentRepositoryRule::ERROR_MESSAGE, 9]]];
     }
 
     protected function getRule(): Rule

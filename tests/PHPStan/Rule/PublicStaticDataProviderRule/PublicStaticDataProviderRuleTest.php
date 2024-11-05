@@ -7,7 +7,6 @@ use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use TomasVotruba\Handyman\PHPStan\Rule\PublicStaticDataProviderRule;
-use TomasVotruba\Handyman\PHPStan\Rule\StaticDataProviderRule;
 
 final class PublicStaticDataProviderRuleTest extends RuleTestCase
 {
@@ -22,16 +21,12 @@ final class PublicStaticDataProviderRuleTest extends RuleTestCase
 
     public static function provideData(): Iterator
     {
-        yield [[
-            __DIR__ . '/Fixture/SomeSimpleTest.php',
-        ], [
+        yield [[__DIR__ . '/Fixture/SomeSimpleTest.php'], [
             [sprintf(PublicStaticDataProviderRule::STATIC_ERROR_MESSAGE, 'provideData'), 16],
             [sprintf(PublicStaticDataProviderRule::PUBLIC_ERROR_MESSAGE, 'provideData'), 16],
         ]];
 
-        yield [[
-            __DIR__ . '/Fixture/SkipStaticTest.php',
-        ], []];
+        yield [[__DIR__ . '/Fixture/SkipStaticTest.php'], []];
     }
 
     protected function getRule(): Rule
