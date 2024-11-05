@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use TomasVotruba\Handyman\FileSystem\JsonFileSystem;
+use TomasVotruba\Handyman\FileSystem\TemplateFileSystem;
 
 final class ReadmeCommand extends Command
 {
@@ -27,27 +28,41 @@ final class ReadmeCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if (file_exists(getcwd() . '/README.md')) {
-            $this->symfonyStyle->warning('"README.md" already exists');
+        $readmeFilePath = getcwd() . '/README.md';
+        $licenseFilePath = getcwd() . '/LICENSE';
+
+        if (file_exists($readmeFilePath) && file_exists($licenseFilePath)) {
+            $this->symfonyStyle->warning('"README.md" and "LICENSE" files already exists');
             return self::SUCCESS;
         }
 
-        $readmeTemplateContents = FileSystem::read(__DIR__ . '/../../templates/README.md');
-        $composerPackageName = JsonFileSystem::readString(getcwd() . '/composer.json', 'name');
+        if (! file_exists($readmeFilePath)) {
+            $composerPackageName = JsonFileSystem::readString(getcwd() . '/composer.json', 'name');
 
-        if (is_string($composerPackageName)) {
-            // 1. install via composer, dev most likely
-            $readmeTemplateContents = str_replace(
-                '__COMPOSER_PACKAGE_NAME__',
-                $composerPackageName,
-                $readmeTemplateContents
+            $readmeTemplateContents = TemplateFileSystem::renderFilePathWithVariables(
+                __DIR__ . '/../../templates/README.md',
+                [
+                    '__COMPOSER_PACKAGE_NAME__' => $composerPackageName,
+
+                ]
             );
+
+            FileSystem::write($readmeFilePath, $readmeTemplateContents);
+            $this->symfonyStyle->success('README.md was added');
         }
 
-        // 2. what it does
+        if (! file_exists($licenseFilePath)) {
+            $licenseTemplateContents = TemplateFileSystem::renderFilePathWithVariables(
+                __DIR__ . '/../../templates/LICENSE',
+                [
+                    '__CURRENT_YEAR__' => date('Y'),
 
-        // 3. how to use it
-        FileSystem::write(getcwd() . '/README.md', $readmeTemplateContents);
+                ]
+            );
+
+            FileSystem::write($licenseFilePath, $licenseTemplateContents);
+            $this->symfonyStyle->success('LICENSE was added');
+        }
 
         return self::SUCCESS;
     }
