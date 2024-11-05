@@ -27,7 +27,7 @@ final class ReadmeCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if (file_exists(getcwd() . '/README.md')) {
+        if (file_exists(getcwd() . '/README.md') && file_exists(getcwd() . '/LICENSE')) {
             $this->symfonyStyle->warning('"README.md" already exists');
             return self::SUCCESS;
         }
@@ -48,6 +48,8 @@ final class ReadmeCommand extends Command
 
         // 3. how to use it
         FileSystem::write(getcwd() . '/README.md', $readmeTemplateContents);
+
+        $this->symfonyStyle->success('README.md and LICENSE files were added to the root');
 
         return self::SUCCESS;
     }
