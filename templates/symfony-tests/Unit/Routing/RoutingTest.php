@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ares\Tests\Unit\Routing;
+namespace App\Tests\Unit\Routing;
 
-use Ares\Tests\Unit\AbstractContainerTestCase;
+use App\Tests\Unit\AbstractContainerTestCase;
 use Iterator;
 use Nette\Utils\FileSystem;
 use Nette\Utils\Json;
