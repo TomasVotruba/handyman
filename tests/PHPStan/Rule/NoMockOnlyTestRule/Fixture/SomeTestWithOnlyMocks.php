@@ -14,8 +14,8 @@ final class SomeTestWithOnlyMocks extends TestCase
 
     protected function setUp(): void
     {
-       $this->someMock = $this->createMock(FirstClass::class);
+        $this->someMock = $this->createMock(FirstClass::class);
 
-       $this->anotherMock = $this->createMock(SecondClass::class);
+        $this->anotherMock = $this->createMock(SecondClass::class);
     }
 }

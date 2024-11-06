@@ -25,7 +25,7 @@ final class NoGetRepositoryOutsideServiceRuleTest extends RuleTestCase
     {
         yield [__DIR__ . '/Fixture/NonRepositoryUsingEntityManager.php', [[
             NoGetRepositoryOutsideServiceRule::ERROR_MESSAGE,
-            17,
+            18,
         ]]];
 
         yield [__DIR__ . '/Fixture/SkipInRepository.php', []];

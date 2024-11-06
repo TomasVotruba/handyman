@@ -18,7 +18,7 @@ jobs:
 
                     -
                         name: 'Check Active Classes'
-                        run: vendor/bin/class-leak check src tests --ansi
+                        run: vendor/bin/class-leak check bin src tests --ansi --skip-path=Fixture --skip-path=Source
 
                     -
                         name: 'Unit tests'
@@ -26,11 +26,15 @@ jobs:
 
                     -
                         name: "Finalize classes"
-                        run: vendor/bin/swiss-knife finalize-classes src tests --dry-run
+                        run: vendor/bin/swiss-knife finalize-classes bin src tests --dry-run --ansi
 
                     -
                         name: 'Composer dependency Analyser'
                         run: vendor/bin/composer-dependency-analyser
+
+                    -
+                        name: 'Validate Composer'
+                        run: composer validate
 
         name: ${{ matrix.actions.name }}
         runs-on: ubuntu-latest

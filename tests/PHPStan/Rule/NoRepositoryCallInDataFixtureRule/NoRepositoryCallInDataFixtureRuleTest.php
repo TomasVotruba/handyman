@@ -28,10 +28,7 @@ final class NoRepositoryCallInDataFixtureRuleTest extends RuleTestCase
             ],
         ];
 
-        yield [
-            __DIR__ . '/Fixture/SkipNonFixtureClass.php',
-            [],
-        ];
+        yield [__DIR__ . '/Fixture/SkipNonFixtureClass.php', []];
     }
 
     protected function getRule(): Rule

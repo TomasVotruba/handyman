@@ -9,6 +9,6 @@ final class MockingEntity extends TestCase
 {
     public function test(): void
     {
-         $someEntityMock = $this->createMock(SomeEntity::class);
+        $someEntityMock = $this->createMock(SomeEntity::class);
     }
 }

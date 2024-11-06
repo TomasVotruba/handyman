@@ -18,4 +18,3 @@ final class SomeSimpleTest extends TestCase
         return [];
     }
 }
-

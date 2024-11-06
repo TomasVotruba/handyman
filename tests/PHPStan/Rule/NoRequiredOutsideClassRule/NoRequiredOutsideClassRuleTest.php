@@ -25,10 +25,7 @@ final class NoRequiredOutsideClassRuleTest extends RuleTestCase
             __DIR__ . '/Fixture/SomeClassUsingTrait.php',
             __DIR__ . '/Fixture/TraitWithRequireAttribute.php',
             __DIR__ . '/Fixture/TraitWithRequire.php',
-        ], [
-            [NoRequiredOutsideClassRule::ERROR_MESSAGE, 9],
-            [NoRequiredOutsideClassRule::ERROR_MESSAGE, 10],
-        ]];
+        ], [[NoRequiredOutsideClassRule::ERROR_MESSAGE, 9], [NoRequiredOutsideClassRule::ERROR_MESSAGE, 10]]];
     }
 
     protected function getRule(): Rule

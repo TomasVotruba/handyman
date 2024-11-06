@@ -23,10 +23,7 @@ final class NoMockOnlyTestRuleTest extends RuleTestCase
 
     public static function provideData(): Iterator
     {
-        yield [__DIR__ . '/Fixture/SomeTestWithOnlyMocks.php', [[
-            NoMockOnlyTestRule::ERROR_MESSAGE,
-            9,
-        ]]];
+        yield [__DIR__ . '/Fixture/SomeTestWithOnlyMocks.php', [[NoMockOnlyTestRule::ERROR_MESSAGE, 9]]];
 
         yield [__DIR__ . '/Fixture/SkipTestWithClass.php', []];
         yield [__DIR__ . '/Fixture/SkipNoProperty.php', []];

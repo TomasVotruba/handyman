@@ -9,6 +9,6 @@ final class SkipMockingOtherObject extends TestCase
 {
     public function test(): void
     {
-         $someEntityMock = $this->createMock(SimpleObject::class);
+        $someEntityMock = $this->createMock(SimpleObject::class);
     }
 }
