@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PHPStan\Rule\NoGetRepositoryOutsideServiceRule\Fixture;
+namespace TomasVotruba\Handyman\Tests\PHPStan\Rule\NoGetRepositoryOutsideServiceRule\Fixture;
 
 use Doctrine\ORM\EntityManager;
-use PHPStan\Rule\NoGetRepositoryOutsideServiceRule\Source\SomeRandomEntity;
+use TomasVotruba\Handyman\Tests\PHPStan\Rule\NoGetRepositoryOutsideServiceRule\Source\SomeRandomEntity;
 
 final readonly class SkipInRepository
 {

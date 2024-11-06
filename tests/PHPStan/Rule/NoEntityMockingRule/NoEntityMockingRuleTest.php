@@ -20,7 +20,7 @@ final class NoEntityMockingRuleTest extends RuleTestCase
     {
         yield [__DIR__ . '/Fixture/MockingEntity.php', [[NoEntityMockingRule::ERROR_MESSAGE, 12]]];
 
-        yield [__DIR__ . '/Fixture/MockingDocument.php', [[NoEntityMockingRule::ERROR_MESSAGE, 13]]];
+        yield [__DIR__ . '/Fixture/MockingDocument.php', [[NoEntityMockingRule::ERROR_MESSAGE, 12]]];
 
         yield [__DIR__ . '/Fixture/SkipMockingOtherObject.php', []];
     }

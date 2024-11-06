@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace TomasVotruba\Handyman\Command;
 
-use Nette\Utils\FileSystem;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use TomasVotruba\Handyman\FileSystem\TemplateFileSystem;
+use TomasVotruba\Handyman\ValueObject\ComposerJson;
 
 final class GithubCommand extends Command
 {
@@ -27,17 +27,22 @@ final class GithubCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $codeAnalysisFilePath = getcwd() . '/.github/workflows/code-analysis.yaml';
-        if (! file_exists($codeAnalysisFilePath)) {
-            $fileContents = TemplateFileSystem::renderFilePathWithVariables(
-                __DIR__ . '/../../templates/github-workflows/code-analysis.yaml',
-                []
+        $projectFilePath = getcwd() . '/.github/workflows/code-analysis.yaml';
+
+        if (! file_exists($projectFilePath)) {
+            $projectComposerJson = new ComposerJson(getcwd() . '/composer.json');
+
+            TemplateFileSystem::renderFilePathWithVariables(
+                __DIR__ . '/../../templates/.github/workflows/code_analysis.yaml',
+                [
+                    '__PHP_VERSION__' => $projectComposerJson->getPhpVersionString(),
+                ],
+                $projectFilePath
             );
 
-            FileSystem::write($codeAnalysisFilePath, $fileContents);
-            $this->symfonyStyle->success('Created .github/workflows/code-analysis.yaml');
+            $this->symfonyStyle->success('Created .github/workflows/code_analysis.yaml');
         } else {
-            $this->symfonyStyle->success('Config .github/workflows/code-analysis.yaml already exists');
+            $this->symfonyStyle->success('Config .github/workflows/code_analysis.yaml already exists');
         }
 
         return self::SUCCESS;

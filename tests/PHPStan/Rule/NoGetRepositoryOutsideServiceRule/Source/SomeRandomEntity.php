@@ -1,7 +1,7 @@
 <?php
 
-namespace PHPStan\Rule\NoGetRepositoryOutsideServiceRule\Source;
+namespace TomasVotruba\Handyman\Tests\PHPStan\Rule\NoGetRepositoryOutsideServiceRule\Source;
 
-class SomeRandomEntity
+final class SomeRandomEntity
 {
 }

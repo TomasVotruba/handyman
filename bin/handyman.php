@@ -1,7 +1,6 @@
 <?php
 
-// 1. install require-dev
-// WIP...
+declare(strict_types=1);
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;

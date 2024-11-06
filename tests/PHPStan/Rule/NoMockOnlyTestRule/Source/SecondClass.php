@@ -2,6 +2,6 @@
 
 namespace TomasVotruba\Handyman\Tests\PHPStan\Rule\NoMockOnlyTestRule\Source;
 
-class SecondClass
+final class SecondClass
 {
 }
