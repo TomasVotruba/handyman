@@ -14,6 +14,9 @@ use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\ObjectType;
 use TomasVotruba\Handyman\Enum\ClassName;
 
+/**
+ * @implements Rule<MethodCall>
+ */
 final class SingleArgEventDispatchRule implements Rule
 {
     /**

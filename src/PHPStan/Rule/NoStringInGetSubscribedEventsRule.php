@@ -11,10 +11,11 @@ use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\NodeFinder;
 use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\ClassReflection;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
-use Symfony\Component\Form\FormEvents;
+use TomasVotruba\Handyman\Enum\ClassName;
 
 /**
  * @implements Rule<ClassMethod>
@@ -42,11 +43,18 @@ final class NoStringInGetSubscribedEventsRule implements Rule
      */
     public function processNode(Node $node, Scope $scope): array
     {
+        if ($node->stmts === null) {
+            return [];
+        }
+
         if ($node->name->toString() !== 'getSubscribedEvents') {
             return [];
         }
 
         $classReflection = $scope->getClassReflection();
+        if (! $classReflection instanceof ClassReflection) {
+            return [];
+        }
 
         // only handle symfony one
         if (! $classReflection->implementsInterface(self::EVENT_SUBSCRIBER_INTERFACE)) {
@@ -67,8 +75,16 @@ final class NoStringInGetSubscribedEventsRule implements Rule
             if ($arrayItem->key instanceof ClassConstFetch) {
                 $classConstFetch = $arrayItem->key;
 
+                if ($classConstFetch->class instanceof Expr) {
+                    continue;
+                }
+
                 // skip Symfony FormEvents::class
-                if ($classConstFetch->class->toString() === FormEvents::class) {
+                if ($classConstFetch->class->toString() === ClassName::FORM_EVENTS) {
+                    continue;
+                }
+
+                if ($classConstFetch->name instanceof Expr) {
                     continue;
                 }
 

@@ -10,6 +10,9 @@ use PhpParser\Node\Identifier;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 
+/**
+ * @implements Rule<MethodCall>
+ */
 final class NoDocumentMockingRule implements Rule
 {
     /**

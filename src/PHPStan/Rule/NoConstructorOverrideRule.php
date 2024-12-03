@@ -46,6 +46,10 @@ final class NoConstructorOverrideRule implements Rule
             return [];
         }
 
+        if ($node->stmts === null) {
+            return [];
+        }
+
         // has parent constructor call?
         if (! $scope->isInClass()) {
             return [];

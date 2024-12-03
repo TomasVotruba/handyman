@@ -23,10 +23,7 @@ final class SingleArgEventDispatchRuleTest extends RuleTestCase
 
     public static function provideData(): Iterator
     {
-        yield [
-            __DIR__ . '/Fixture/ReportEventDispatcher.php',
-            [[SingleArgEventDispatchRule::ERROR_MESSAGE, 11]],
-        ];
+        yield [__DIR__ . '/Fixture/ReportEventDispatcher.php', [[SingleArgEventDispatchRule::ERROR_MESSAGE, 11]]];
 
         yield [__DIR__ . '/Fixture/SkipSingleDispatch.php', []];
         yield [__DIR__ . '/Fixture/SkipUnrelatedDispatch.php', []];

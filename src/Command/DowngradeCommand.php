@@ -33,6 +33,8 @@ final class DowngradeCommand extends Command
         // @todo create /build with config
         // @todo update composer.json with no PHP version check
 
+        $this->symfonyStyle->success('Done');
+
         return self::SUCCESS;
     }
 }
