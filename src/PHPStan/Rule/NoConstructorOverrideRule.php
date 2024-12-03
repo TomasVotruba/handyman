@@ -6,12 +6,9 @@ namespace TomasVotruba\Handyman\PHPStan\Rule;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\StaticCall;
-use PhpParser\Node\Identifier;
-use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\NodeFinder;
 use PHPStan\Analyser\Scope;
-use PHPStan\Reflection\ClassReflection;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
@@ -42,7 +39,7 @@ final class NoConstructorOverrideRule implements Rule
      */
     public function processNode(Node $node, Scope $scope): array
     {
-        if ($node->name->toLowerString() !== self::CONSTRUCTOR_NAME) {
+        if (! fast_node_named($node->name, self::CONSTRUCTOR_NAME)) {
             return [];
         }
 
@@ -55,20 +52,7 @@ final class NoConstructorOverrideRule implements Rule
             return [];
         }
 
-        // parent has no cunstructor, we can skip it
-        $classReflection = $scope->getClassReflection();
-        if ($classReflection->isAnonymous()) {
-            return [];
-        }
-
-        $parentClassReflection = $classReflection->getParentClass();
-
-        // no parent class? let it go
-        if (! $parentClassReflection instanceof ClassReflection) {
-            return [];
-        }
-
-        if (! $parentClassReflection->hasConstructor()) {
+        if (! fast_has_parent_constructor($scope)) {
             return [];
         }
 
@@ -78,24 +62,14 @@ final class NoConstructorOverrideRule implements Rule
                 return false;
             }
 
-            if (! $node->class instanceof Name) {
-                return false;
-            }
-
-            if (! $node->name instanceof Identifier) {
-                return false;
-            }
-
-            return $node->name->toString() === '__construct';
+            return fast_node_named($node->name, self::CONSTRUCTOR_NAME);
         });
 
         if ($parentConstructorStaticCall instanceof StaticCall) {
             return [];
         }
 
-        $ruleError = RuleErrorBuilder::message(self::ERROR_MESSAGE)
-            ->build();
-
+        $ruleError = RuleErrorBuilder::message(self::ERROR_MESSAGE)->build();
         return [$ruleError];
     }
 }
