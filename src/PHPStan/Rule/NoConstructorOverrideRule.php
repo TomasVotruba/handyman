@@ -1,0 +1,97 @@
+<?php
+
+declare(strict_types=1);
+
+namespace TomasVotruba\Handyman\PHPStan\Rule;
+
+use PhpParser\Node;
+use PhpParser\Node\Expr\StaticCall;
+use PhpParser\Node\Identifier;
+use PhpParser\Node\Name;
+use PhpParser\Node\Stmt\ClassMethod;
+use PhpParser\NodeFinder;
+use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\ClassReflection;
+use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleError;
+use PHPStan\Rules\RuleErrorBuilder;
+
+/**
+ * @implements Rule<ClassMethod>
+ */
+final class NoConstructorOverrideRule implements Rule
+{
+    /**
+     * @var string
+     */
+    public const ERROR_MESSAGE = 'Possible __construct() override, this can cause missing dependencies or setup';
+
+    /**
+     * @var string
+     */
+    private const CONSTRUCTOR_NAME = '__construct';
+
+    public function getNodeType(): string
+    {
+        return ClassMethod::class;
+    }
+
+    /**
+     * @param ClassMethod $node
+     * @return RuleError[]
+     */
+    public function processNode(Node $node, Scope $scope): array
+    {
+        if ($node->name->toLowerString() !== self::CONSTRUCTOR_NAME) {
+            return [];
+        }
+
+        // has parent constructor call?
+        if (! $scope->isInClass()) {
+            return [];
+        }
+
+        // parent has no cunstructor, we can skip it
+        $classReflection = $scope->getClassReflection();
+        if ($classReflection->isAnonymous()) {
+            return [];
+        }
+
+        $parentClassReflection = $classReflection->getParentClass();
+
+        // no parent class? let it go
+        if (! $parentClassReflection instanceof ClassReflection) {
+            return [];
+        }
+
+        if (! $parentClassReflection->hasConstructor()) {
+            return [];
+        }
+
+        $nodeFinder = new NodeFinder();
+        $parentConstructorStaticCall = $nodeFinder->findFirst($node->stmts, function (Node $node): bool {
+            if (! $node instanceof StaticCall) {
+                return false;
+            }
+
+            if (! $node->class instanceof Name) {
+                return false;
+            }
+
+            if (! $node->name instanceof Identifier) {
+                return false;
+            }
+
+            return $node->name->toString() === '__construct';
+        });
+
+        if ($parentConstructorStaticCall instanceof StaticCall) {
+            return [];
+        }
+
+        $ruleError = RuleErrorBuilder::message(self::ERROR_MESSAGE)
+            ->build();
+
+        return [$ruleError];
+    }
+}
