@@ -30,7 +30,10 @@
     "autoload": {
         "psr-4": {
             "TomasVotruba\\Handyman\\": "src"
-        }
+        },
+        "files": [
+            "src/fast-functions.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
