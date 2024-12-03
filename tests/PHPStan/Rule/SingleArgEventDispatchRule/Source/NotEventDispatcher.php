@@ -2,7 +2,7 @@
 
 namespace TomasVotruba\Handyman\Tests\PHPStan\Rule\SingleArgEventDispatchRule\Source;
 
-class NotEventDispatcher
+final class NotEventDispatcher
 {
     public function dispatch()
     {
