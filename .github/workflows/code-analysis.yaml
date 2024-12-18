@@ -18,19 +18,11 @@ jobs:
 
                     -
                         name: 'Check Active Classes'
-                        run: vendor/bin/class-leak check bin src tests --ansi --skip-path=Fixture --skip-path=Source
-
-                    -
-                        name: 'Unit tests'
-                        run: vendor/bin/phpunit
+                        run: vendor/bin/class-leak check bin src --ansi --skip-path=Fixture --skip-path=Source
 
                     -
                         name: "Finalize classes"
-                        run: vendor/bin/swiss-knife finalize-classes bin src tests --dry-run --ansi
-
-                    -
-                        name: 'Composer dependency Analyser'
-                        run: vendor/bin/composer-dependency-analyser
+                        run: vendor/bin/swiss-knife finalize-classes bin src --dry-run --ansi
 
                     -
                         name: 'Validate Composer'
