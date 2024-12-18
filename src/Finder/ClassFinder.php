@@ -28,7 +28,6 @@ final class ClassFinder
             $classNames[] = self::createClassNameFromFilePath($commandFileInfo->getRealPath());
         }
 
-        Assert::allString($classNames);
         Assert::allClassExists($classNames);
 
         // remove abstract classes, check via reflection

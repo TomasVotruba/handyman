@@ -5,27 +5,26 @@
     "description": "Automate repeated steps when coming to a PHP project or create new package",
     "require": {
         "php": "^8.2",
-        "illuminate/container": "^11.30",
-        "symfony/console": "^7.1",
-        "symfony/process": "^7.1",
-        "symfony/finder": "^7.1",
+        "illuminate/container": "^11.36",
+        "symfony/console": "^7.2",
+        "symfony/process": "^7.2",
+        "symfony/finder": "^7.2",
         "nette/utils": "^4.0",
-        "phpstan/phpstan": "^1.12",
+        "phpstan/phpstan": "^2.0",
         "webmozart/assert": "^1.11"
     },
     "require-dev": {
-        "rector/rector": "^1.2",
+        "rector/rector": "^2.0",
         "phpstan/extension-installer": "^1.4",
-        "phpunit/phpunit": "^10.5",
-        "rector/swiss-knife": "^1.0",
-        "rector/type-perfect": "^1.0",
+        "phpunit/phpunit": "^11.5",
+        "rector/swiss-knife": "^2.0",
         "symplify/easy-coding-standard": "^12.3",
-        "shipmonk/composer-dependency-analyser": "^1.7",
-        "tomasvotruba/type-coverage": "^1.0",
-        "tomasvotruba/class-leak": "^1.1",
-        "tomasvotruba/unused-public": "^1.0",
+        "tomasvotruba/type-coverage": "^2.0",
+        "tomasvotruba/class-leak": "^2.0",
+        "tomasvotruba/unused-public": "^2.0",
         "tracy/tracy": "^2.10",
-        "nikic/php-parser": "^4.19"
+        "nikic/php-parser": "^5.3",
+        "symplify/phpstan-extensions": "^12.0"
     },
     "autoload": {
         "psr-4": {
